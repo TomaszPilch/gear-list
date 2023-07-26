@@ -1,15 +1,23 @@
-import { PieChart } from '@mui/icons-material'
-import { useContext } from 'react'
+import { PieChart } from '@mui/x-charts'
+import * as React from 'react'
 
-import { Context } from '@/src/Context'
-
-const Chart = () => {
-  const tmp = useContext(Context)
-  const gear = tmp.items.map((item) => {
-    return { id: item.category, value: item.weight, label: item.category }
+const Chart = (props) => {
+  const gear = props.tmp.map((item) => {
+    return { id: item.id, value: item.weight, label: item.category }
   })
 
-  return <PieChart height={1000} series={gear} width={2000} />
+  const chartData = []
+
+  for (let i = 0; i < gear.length; i++) {
+    if (chartData.length === 0 || !chartData.some((comparator) => gear[i].label === comparator.label)) {
+      chartData.push(gear[i])
+    } else {
+      const idx = chartData.findIndex((comparator) => gear[i].label === comparator.label)
+      chartData[idx].value = parseInt(chartData[idx].value + gear[i].value)
+    }
+  }
+
+  return <PieChart align="left" height={300} series={[{ data: chartData }]} width={1000} />
 }
 
 export default Chart

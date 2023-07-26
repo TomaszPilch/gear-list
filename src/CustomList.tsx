@@ -1,3 +1,4 @@
+import StarIcon from '@mui/icons-material/Star'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -26,9 +27,9 @@ export default function CustomList(props) {
               <TableCell component="th" scope="row">
                 {row.category}
               </TableCell>
-              <TableCell align="left">{row.title}</TableCell>
-              <TableCell align="left"> {row.checked && '*'}</TableCell>
-              <TableCell align="left">{row.weight}g</TableCell>
+              <TableCell align="left">{row.qty > 0 ? row.title : ' '}</TableCell>
+              <TableCell align="left">{row.qty > 0 ? <StarIcon style={{ color: 'yellow' }} /> : ' '}</TableCell>
+              <TableCell align="left">{row.weight * row.qty}g</TableCell>
               <TableCell align="left">{row.qty}</TableCell>
             </TableRow>
           ))}

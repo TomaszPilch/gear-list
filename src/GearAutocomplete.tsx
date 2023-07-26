@@ -1,5 +1,6 @@
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
+import Link from 'next/link'
 import * as React from 'react'
 import { useContext } from 'react'
 
@@ -11,12 +12,15 @@ const GearAutocomplete = () => {
 
   return (
     <Autocomplete
-      getOptionLabel={(option) => option.title}
+      disablePortal
+      getOptionLabel={(option) => `${option.category} ${option.title}  ${option.weight}g`}
       options={list}
       placeholder="Combo box"
-      renderInput={(params) => {
-        ;<TextField>{option.title}</TextField>
-      }}
+      renderInput={(params) => (
+        <TextField {...params} title="gear">
+          <Link href={params.href} />
+        </TextField>
+      )}
       sx={{ width: 300 }}
     />
   )
