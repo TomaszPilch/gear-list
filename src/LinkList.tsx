@@ -4,10 +4,9 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Link from 'next/Link'
-import { useContext } from 'react'
 import * as React from 'react'
 
-import { Context, useDataContext } from '@/src/Context'
+import { useDataContext } from '@/src/Context'
 
 const LinkList = (props) => {
   const { lists, categories, items } = useDataContext()

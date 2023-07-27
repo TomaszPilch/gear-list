@@ -9,8 +9,6 @@ import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
 export default function CustomImage(props) {
-  console.log(props.tmp.src)
-
   return (
     <Card sx={{ display: 'flex', flexDirection: 'right', align: 'right', height: 151, width: 500 }}>
       <Box sx={{ display: 'flex', flexDirection: 'right', align: 'right' }}>

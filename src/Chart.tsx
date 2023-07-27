@@ -1,4 +1,3 @@
-import { yellow, red, blue, green, orange, pink } from '@mui/material/colors'
 import { PieChart } from '@mui/x-charts'
 import * as React from 'react'
 

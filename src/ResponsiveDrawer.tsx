@@ -32,7 +32,7 @@ export default function ResponsiveDrawer(props: Props) {
   const { window } = props
 
   const isItinLists = router.pathname.startsWith('/lists')
-  const gear = useContext(Context)
+
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {

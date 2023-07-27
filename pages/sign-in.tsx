@@ -16,13 +16,11 @@ const SignIn = () => {
     e.preventDefault()
     if (password === '') return
     if (username === '') return
-    console.log(username)
-    console.log(password)
+
     if (!data.users.some((user) => user.username === username && user.password.includes(password))) {
       alert('the username or password was incorrect.')
     } else {
       data.changeSignedInStatus(username)
-      console.log(data.user)
     }
     setPassword('')
     setUsername('')

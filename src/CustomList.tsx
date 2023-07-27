@@ -1,7 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete'
 import StarIcon from '@mui/icons-material/Star'
 import StarOutlineIcon from '@mui/icons-material/StarOutline'
-import { Button } from '@mui/joy'
 import IconButton from '@mui/material/IconButton'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -27,10 +26,8 @@ export default function CustomList({ id, tmp }) {
 
   function handleAddToFav(currentItem) {
     setNewItem(currentItem)
-    console.log(tmp)
-    console.log(currentItem)
     data.addToFav(id, currentItem)
-    console.log(data.lists)
+
     setNewItem(null)
   }
 

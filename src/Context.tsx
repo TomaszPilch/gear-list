@@ -362,7 +362,6 @@ export default function ContextProvider({ children }) {
       }
       if (!categories.includes(category)) setCategory([...categories, category])
       setItem([...items, newItem])
-      console.log(items)
     },
     [items],
   )

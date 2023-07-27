@@ -15,7 +15,6 @@ const GearAutocomplete = ({ id }) => {
   function handleSubmit(e) {
     e.preventDefault()
     data.addItemToList(id, item)
-    console.log(item)
 
     setNewItem(null)
   }
@@ -27,7 +26,6 @@ const GearAutocomplete = ({ id }) => {
         getOptionLabel={(option) => `${option.category} ${option.title}  ${option.weight}g`}
         onChange={(event, value) => {
           setNewItem(value)
-          console.log(value)
         }}
         options={list}
         placeholder="Combo box"

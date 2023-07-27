@@ -21,6 +21,11 @@ const AddNewItem = () => {
     e.preventDefault()
     data.addItem(title, category, weight, src)
 
+    if (title === '') return
+    if (category === '') return
+    if (weight === '') return
+    if (src === '') return
+
     setNewCategory('')
     setNewTitle('')
     setNewWeight('')
