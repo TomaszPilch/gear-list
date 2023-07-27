@@ -5,6 +5,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import * as React from 'react'
 import { useContext } from 'react'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 import { Context } from '@/src/Context'
 
@@ -16,18 +17,28 @@ const columns: GridColDef[] = [
 
 export default function DataTable() {
   const [newTitle, setNewTitle] = useState('')
+  const [selectedRows, setSelectedRows] = useState([])
   const gear = useContext(Context)
+
   const rows = gear.items
+
+  useEffect(() => {}, [selectedRows])
 
   function handleSubmit(e) {
     e.preventDefault()
     if (newTitle === '') return
+
+    const selectedItems = selectedRows.map((row) => rows[row - 1])
+
+    gear.addList(newTitle, selectedItems)
+
     setNewTitle('')
+    setSelectedRows([])
   }
 
   return (
     <>
-      <TextField id="outlined-basic" />
+      <TextField id="outlined-basic" onChange={(e) => setNewTitle(e.target.value)} value={newTitle} />
       <br />
       <br />
       <br />
@@ -43,12 +54,16 @@ export default function DataTable() {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
+          onRowSelectionModelChange={(newSelection) => {
+            setSelectedRows(newSelection)
+          }}
           pageSizeOptions={[5, 10]}
+          rowSelectionModel={selectedRows}
           rows={rows}
         />
       </div>
       <br />
-      <Button>Save</Button>
+      <Button onClick={handleSubmit}>Save</Button>
     </>
   )
 }

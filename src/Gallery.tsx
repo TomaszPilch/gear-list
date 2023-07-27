@@ -1,5 +1,6 @@
 import ImageList from '@mui/material/ImageList'
-import Link from '@mui/material/Link'
+import LinkMui from '@mui/material/Link'
+import Link from 'next/Link'
 import * as React from 'react'
 import { useContext } from 'react'
 
@@ -12,9 +13,9 @@ export default function Gallery() {
   return (
     <ImageList>
       {items.map((item) => (
-        <Link href={item.href} underline="none">
+        <LinkMui component={Link} href={item.href} underline="none">
           <CustomImage tmp={item} />
-        </Link>
+        </LinkMui>
       ))}
     </ImageList>
   )

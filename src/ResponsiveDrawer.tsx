@@ -1,17 +1,17 @@
 import AddIcon from '@mui/icons-material/Add'
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
-import Link from '@mui/material/Link'
+import LinkMui from '@mui/material/Link'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import Link from 'next/Link'
 import { useRouter } from 'next/router'
 import * as React from 'react'
 import { useContext } from 'react'
 
-import Provider from '@/src/Context'
 import { Context } from '@/src/Context'
 import GearAutocomplete from '@/src/GearAutocomplete'
 import LinkList from '@/src/LinkList'
@@ -28,7 +28,10 @@ const drawerWidth = 270
 
 export default function ResponsiveDrawer(props: Props) {
   const router = useRouter()
+  const title = router.query.slug
   const { window } = props
+
+  const isItinLists = router.pathname.startsWith('/lists')
   const gear = useContext(Context)
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
@@ -41,29 +44,29 @@ export default function ResponsiveDrawer(props: Props) {
       <Toolbar style={{ color: 'grey' }} />
 
       <ListItemButton style={{ color: 'grey' }}>
-        <Link href="/" underline="none">
+        <LinkMui component={Link} href="/" underline="none">
           <ListItemText style={{ color: 'black' }}>
             {' '}
             <b> LighterPack </b>(beta)
           </ListItemText>
-        </Link>
+        </LinkMui>
       </ListItemButton>
       <br></br>
       <div>
         <ListItemButton>
-          <Link href="/add-new-list" underline="none">
+          <LinkMui component={Link} href="/add-new-list" underline="none">
             <ListItemText style={{ color: 'green' }}>
               {' '}
               <AddIcon></AddIcon>&nbsp;Add new list
             </ListItemText>
-          </Link>
+          </LinkMui>
         </ListItemButton>
       </div>
       <Divider />
       <ListItemButton>
-        <Link href="/offer" underline="none">
-          <ListItemText style={{ color: 'black' }}> Our offer</ListItemText>
-        </Link>
+        <LinkMui component={Link} href="/my-gear" underline="none">
+          <ListItemText style={{ color: 'black' }}> My gear</ListItemText>
+        </LinkMui>
       </ListItemButton>
 
       <Stack>
@@ -71,17 +74,10 @@ export default function ResponsiveDrawer(props: Props) {
         <Stack>
           <Typography direction="row"> Lists</Typography>
         </Stack>
-        <Provider>
-          <LinkList text={router.query.slug}></LinkList>
-        </Provider>
+
+        <LinkList text={router.query.slug}></LinkList>
       </Stack>
       <Divider />
-      <Typography component="div" noWrap tvariant="h6">
-        Gear
-      </Typography>
-      <Provider>
-        <GearAutocomplete />
-      </Provider>
     </div>
   )
 
@@ -115,6 +111,15 @@ export default function ResponsiveDrawer(props: Props) {
         variant="permanent"
       >
         {drawer}
+        {isItinLists ? (
+          <>
+            <Divider />
+            <Stack>
+              <Typography direction="row"> Gear</Typography>
+            </Stack>
+            <GearAutocomplete id={title} />
+          </>
+        ) : null}
       </Drawer>
     </>
   )

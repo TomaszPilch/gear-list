@@ -1,9 +1,10 @@
+import { yellow, red, blue, green, orange, pink } from '@mui/material/colors'
 import { PieChart } from '@mui/x-charts'
 import * as React from 'react'
 
 const Chart = (props) => {
   const gear = props.tmp.map((item) => {
-    return { id: item.id, value: item.weight, label: item.category }
+    return { id: item.id, value: parseInt(item.weight) * parseInt(item.qty), label: item.category }
   })
 
   const chartData = []
@@ -13,7 +14,8 @@ const Chart = (props) => {
       chartData.push(gear[i])
     } else {
       const idx = chartData.findIndex((comparator) => gear[i].label === comparator.label)
-      chartData[idx].value = parseInt(chartData[idx].value + gear[i].value)
+
+      chartData[idx].value = parseInt(chartData[idx].value) + parseInt(gear[i].value)
     }
   }
 

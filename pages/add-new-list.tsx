@@ -1,8 +1,6 @@
 import Typography from '@mui/material/Typography'
-import React from 'react'
 
 import AppBar from '@/src/AppBar'
-import Provider from '@/src/Context'
 import SelectTable from '@/src/SelectTable'
 
 const AddNewList = () => {
@@ -16,9 +14,7 @@ const AddNewList = () => {
         Name of new list:
       </Typography>
 
-      <Provider>
-        <SelectTable />
-      </Provider>
+      <SelectTable />
     </>
   )
 }

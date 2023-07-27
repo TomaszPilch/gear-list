@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import React from 'react'
 
 import AppBar from '@/src/AppBar'
 import { useList } from '@/src/Context'
@@ -15,7 +14,6 @@ export default function Page() {
     return null
   }
   const currentTitle = foundCurrentGear.text
-  console.log(foundCurrentGear, listItems)
 
   return (
     <>
@@ -24,7 +22,7 @@ export default function Page() {
       <br />
       <br />
       <Chart tmp={listItems} />
-      <CustomList tmp={listItems}></CustomList>
+      <CustomList id={router.query.slug} tmp={listItems}></CustomList>
     </>
   )
 }

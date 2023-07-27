@@ -1,3 +1,4 @@
+import { Button } from '@mui/joy'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 import * as React from 'react'
@@ -25,6 +26,7 @@ export default function Search({ children }) {
         renderInput={(params) => <TextField {...params} label="search" />}
         sx={{ width: 300 }}
       />
+      <button>Add to my list</button>
     </>
   )
 }

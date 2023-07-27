@@ -1,8 +1,10 @@
+import { Button } from '@mui/joy'
 import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
+import LinkMui from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
 
 import AppBar from '@/src/AppBar'
 import { useItem } from '@/src/Context'
@@ -26,6 +28,12 @@ export default function Page() {
       <br />
 
       <CustomImage tmp={currentItem} />
+      <br />
+      <Button>
+        <LinkMui color="white" component={Link} href="/my-gear" underline="none">
+          Back to my gear
+        </LinkMui>
+      </Button>
       {/*<img*/}
       {/*  alt={currentItem.title}*/}
       {/*  loading="lazy"*/}
